@@ -32,6 +32,9 @@ jobs:
           mkdir -p _sitio
           cp -R index.html styles.css fonts img muestra redes .nojekyll _sitio/
           [ -f CNAME ] && cp CNAME _sitio/ || true
+          # Cloudflare guarda styles.css 4 horas en el navegador: la URL cambia en cada publicación (cache-busting)
+          sed -i "s|href=\"styles.css\"|href=\"styles.css?v=${GITHUB_SHA::7}\"|" _sitio/index.html
+          grep -q "styles.css?v=${GITHUB_SHA::7}" _sitio/index.html
           du -sh _sitio
       - uses: actions/upload-pages-artifact@v3
         with:

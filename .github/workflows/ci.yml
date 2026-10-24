@@ -28,15 +28,14 @@ jobs:
           npx stylelint "styles.css"
       - name: Comprobar que existan los archivos enlazados
         run: |
-          set -e
           faltan=0
-          for f in $(grep -o 'href="[^"#][^"]*"\|src="[^"]*"' index.html | sed 's/^[a-z]*="//; s/"$//' | grep -v '^mailto:\|^http\|^data:' | sort -u); do
-            [ -e "$f" ] || { echo "FALTA $f"; faltan=1; }
+          grep -o 'href="[^"#][^"]*"\|src="[^"]*"' index.html | sed 's/^[a-z]*="//; s/"$//' | grep -v '^mailto:\|^http\|^data:' | sort -u | while IFS= read -r f; do
+            [ -e "$f" ] || { echo "FALTA $f"; exit 1; }
           done
-          for f in $(grep -o 'url("[^"]*")' styles.css | sed 's/url("//; s/")//' | sort -u); do
-            [ -e "$f" ] || { echo "FALTA $f (CSS)"; faltan=1; }
+          grep -o 'url("[^"]*")' styles.css | sed 's/url("//; s/")//' | sort -u | while IFS= read -r f; do
+            [ -e "$f" ] || { echo "FALTA $f (CSS)"; exit 1; }
           done
-          exit $faltan
+          echo "OK: todos los archivos enlazados existen"
 
   enlaces:
     name: Enlaces externos

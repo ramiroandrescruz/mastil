@@ -1,6 +1,10 @@
-# Reglas de ZAP para GitHub Pages: no podemos fijar cabeceras HTTP ahí (se resuelve con Cloudflare delante).
-10038	WARN	(Content Security Policy header not set: se declara con <meta>)
-10020	WARN	(Anti-clickjacking header)
-10021	WARN	(X-Content-Type-Options)
-10063	WARN	(Permissions Policy)
-10037	WARN	(Server leaks information)
+# Reglas de ZAP baseline. IGNORE: lo que GitHub Pages no deja cambiar (cabeceras y caché); se resuelve con Cloudflare delante.
+10015	IGNORE	(Cache-control: Pages fija max-age=600)
+10020	IGNORE	(Anti-clickjacking: frame-ancestors no vale en <meta>; cabecera pendiente en Cloudflare)
+10021	IGNORE	(X-Content-Type-Options: cabecera pendiente en Cloudflare)
+10035	IGNORE	(HSTS: Pages lo manda en el HTML; en los recursos lo pondrá Cloudflare)
+10050	IGNORE	(Retrieved from cache: informativo)
+10055	IGNORE	(CSP sin frame-ancestors: no se puede declarar en <meta>)
+10063	IGNORE	(Permissions-Policy: cabecera pendiente en Cloudflare)
+10098	IGNORE	(Cross-domain: Pages manda access-control-allow-origin en los recursos)
+10109	IGNORE	(Modern Web Application: informativo)

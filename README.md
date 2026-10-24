@@ -4,7 +4,7 @@ Sitio estático de **Mástil**, libros para guitarristas de rock y metal, de Ram
 
 - `fonts/`: Source Serif 4, Source Sans 3 y Noto Sans Symbols 2 recortadas a WOFF2 (licencia SIL OFL, incluida).
 - `img/`: tapa y páginas del libro, y grabados de dominio público (Wikimedia Commons), en gris.
-- `muestra/`: el PDF de muestra (29 páginas).
+- `muestra/`: el PDF de muestra, `armonia-muestra.pdf` (29 páginas).
 
 Las páginas y la muestra se regeneran desde el PDF del libro con las herramientas del proyecto *Lanzar la web y la marca de la serie* (vault del autor).
 

@@ -58,9 +58,9 @@ jobs:
           node-version: 22
       - name: Servir la web en local
         run: |
-          npx --yes serve@14 -l 8080 . &
-          sleep 3
-          curl -sf http://localhost:8080/ > /dev/null
+          npx --yes serve@14 -l 8080 . > /tmp/serve.log 2>&1 &
+          for i in $(seq 1 40); do curl -sf http://localhost:8080/ > /dev/null && break; sleep 2; done
+          curl -sf -o /dev/null -w "servidor listo: %{http_code}\n" http://localhost:8080/ || { cat /tmp/serve.log; exit 1; }
       - name: Accesibilidad (pa11y, WCAG 2.1 AA)
         run: npx --yes pa11y-ci@3 --config .pa11yci.json
       - name: Lighthouse con presupuestos

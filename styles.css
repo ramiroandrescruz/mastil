@@ -150,12 +150,12 @@ p { margin: 0 0 1em; }
 @media (min-width: 860px) { .dos-columnas { grid-template-columns: 1fr 1fr; gap: 3rem; } }
 .grabado { background: var(--lamina); padding: 1rem; border: 1px solid var(--filete); box-shadow: var(--sombra); }
 .grabado img { margin-inline: auto; }
-.grabado.chico { padding: .6rem; width: 100%; max-width: 230px; }
+.grabado.chico { display: none; margin: 0; padding: .6rem; width: 100%; max-width: 230px; }
 .grabado.chico figcaption { font-size: .78rem; }
 .cabeza-grabado { display: grid; gap: 1.5rem; grid-template-columns: 1fr; align-items: center; margin-bottom: 2rem; }
 .seccion .cabeza-grabado header { margin-bottom: 0; }
 
-@media (min-width: 860px) { .cabeza-grabado { grid-template-columns: 1fr 230px; gap: 3rem; } }
+@media (min-width: 860px) { .cabeza-grabado { grid-template-columns: 1fr 230px; gap: 3rem; } .grabado.chico { display: block; } }
 .grabado figcaption { font-family: var(--sans); font-size: .82rem; color: #55575c; margin-top: .75rem; text-align: center; }
 
 /* Partes del libro */
@@ -168,7 +168,11 @@ p { margin: 0 0 1em; }
 .apendices { margin-top: 1.25rem; font-size: .98rem; color: var(--tinta-2); }
 
 /* Tarjetas */
-.tarjetas { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.tarjetas { display: grid; gap: 2rem 1.75rem; grid-template-columns: 1fr; }
+
+@media (min-width: 620px) { .tarjetas { grid-template-columns: repeat(2, 1fr); } }
+
+@media (min-width: 960px) { .tarjetas { grid-template-columns: repeat(3, 1fr); } }
 .tarjeta { border-top: 3px double var(--tinta); padding-top: 1rem; }
 .tarjeta .icono { font-family: var(--simbolos); display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; background: var(--tinta); color: var(--papel); font-size: .95rem; margin-bottom: .6rem; }
 .tarjeta h3 { font-size: 1.12rem; margin-bottom: .35rem; }

@@ -87,6 +87,10 @@ p { margin: 0 0 1em; }
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* ---------- Encabezado ---------- */
+.barra-legal { background: var(--papel-2); border-bottom: 1px solid var(--filete); font-family: var(--sans); font-size: .85rem; }
+.barra-legal .contenedor { display: flex; justify-content: flex-end; padding: .3rem 0; }
+.barra-legal a { color: var(--tinta); font-weight: 600; }
+#condiciones, #arrepentimiento, #privacidad { scroll-margin-top: 76px; }
 .friso { display: block; width: 100%; height: 72px; object-fit: cover; object-position: center; background: var(--lamina); }
 .cabecera { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--papel) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--filete); }
 .cabecera .contenedor { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 60px; }
@@ -199,6 +203,17 @@ p { margin: 0 0 1em; }
 .aviso { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; border: 1px solid var(--filete); padding: 1.1rem 1.25rem; margin-top: 2rem; background: var(--papel); }
 .aviso p { margin: 0; }
 
+/* Condiciones de venta */
+.condiciones-nota { font-family: var(--sans); font-size: .95rem; color: var(--tinta-2); margin: 1.25rem 0 0; }
+.legal { display: grid; gap: 1.75rem 3rem; grid-template-columns: 1fr; }
+
+@media (min-width: 860px) { .legal { grid-template-columns: 1fr 1fr; } }
+.legal article { border-top: 3px double var(--tinta); padding-top: 1rem; }
+.legal h3 { font-size: 1.12rem; margin-bottom: .35rem; }
+.legal p { font-size: .98rem; }
+.legal .arrepentimiento { border: 1px solid var(--filete); border-top: 3px double var(--tinta); padding: 1rem 1.25rem 1.25rem; background: var(--papel-2); }
+.legal .arrepentimiento .boton { margin-bottom: .75rem; }
+
 /* Próximo libro */
 .proximo { display: grid; gap: 1.5rem; grid-template-columns: 1fr; align-items: center; }
 
@@ -236,4 +251,4 @@ dialog.visor img { width: 100%; }
 dialog.visor .barra { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .6rem .9rem; font-family: var(--sans); font-size: .9rem; color: #55575c; background: #fff; border-top: 1px solid #c9ced6; }
 dialog.visor button { font: inherit; background: none; border: 1px solid #55575c; color: #161616; padding: .3rem .7rem; border-radius: 4px; cursor: pointer; }
 
-@media print { .cabecera, .acciones, .aviso, dialog { display: none !important; } }
+@media print { .barra-legal, .cabecera, .acciones, .aviso, dialog { display: none !important; } }

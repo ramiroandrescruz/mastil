@@ -239,6 +239,8 @@ p { margin: 0 0 1em; }
 .pie .marca .nombre { font-size: 1.1rem; }
 .pie p { margin: .35rem 0 0; }
 .pie a { color: inherit; }
+.pie .data-fiscal { display: inline-block; margin-top: .9rem; }
+.pie .data-fiscal img { width: 56px; background: #fff; }
 .pie .colofon { justify-self: end; text-align: center; }
 .pie .colofon img { width: 72px; margin-inline: auto; background: var(--lamina); padding: 4px; border: 1px solid var(--filete); }
 .pie .colofon span { display: block; font-size: .75rem; margin-top: .4rem; letter-spacing: .08em; text-transform: uppercase; }

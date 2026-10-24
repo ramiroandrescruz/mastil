@@ -179,6 +179,10 @@ p { margin: 0 0 1em; }
 .galeria img { aspect-ratio: 737 / 1058; object-fit: cover; }
 .galeria figcaption { font-family: var(--sans); font-size: .85rem; color: var(--tinta-2); margin-top: .6rem; line-height: 1.4; }
 .galeria figcaption b { color: var(--tinta); font-weight: 600; }
+.galeria figure.ancha { grid-column: 1 / -1; }
+.galeria figure.ancha img { aspect-ratio: 1040 / 778; }
+
+@media (min-width: 720px) { .galeria figure.ancha { grid-column: span 2; } }
 
 /* Compra */
 .precios { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }

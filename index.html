@@ -161,19 +161,20 @@
     <header>
       <p class="etiqueta">Comprar</p>
       <h2>El libro completo, en PDF</h2>
-      <p>Un solo archivo con las dos ediciones y el archivo de Guitar Pro. Sin DRM: el PDF lleva el nombre de quien lo compra al pie de cada página.</p>
+      <p>Un solo archivo con las dos ediciones y el archivo de Guitar Pro. Sin DRM: el PDF lleva el nombre de quien lo compra al pie de cada página. Quienes pidan el aviso reciben el precio de lanzamiento.</p>
     </header>
     <div class="precios">
-      <article class="precio">
+      <article class="precio" id="precio-argentina">
         <p class="etiqueta">Argentina</p>
-        <p class="importe">$ 22.000 <small>pesos</small></p>
-        <p class="medio">Pago con Mercado Pago: tarjeta, transferencia o dinero en cuenta. Entrega por correo electrónico.</p>
-        <a class="boton primario" href="#aviso" aria-disabled="true">Disponible el 16 de noviembre</a>
+        <p class="importe">$ 22.000 <small>pesos · precio de lanzamiento</small></p>
+        <p class="medio">Hasta el 30 de noviembre; después, $ 24.900. Pago con Mercado Pago: tarjeta, transferencia o dinero en cuenta. Entrega por correo electrónico.</p>
+        <!-- Links de pago de Mercado Pago: lanzamiento https://mpago.li/12UKNwS ($ 22.000) · normal https://mpago.li/2BBXz8g ($ 24.900). Se activan el 16 de noviembre. -->
+        <a class="boton primario" href="#aviso" aria-disabled="true" data-lanzamiento="https://mpago.li/12UKNwS" data-normal="https://mpago.li/2BBXz8g">Disponible el 16 de noviembre</a>
       </article>
-      <article class="precio">
+      <article class="precio" id="precio-exterior">
         <p class="etiqueta">Resto del mundo</p>
-        <p class="importe">USD 24</p>
-        <p class="medio">Pago con tarjeta o PayPal. Descarga inmediata.</p>
+        <p class="importe">USD 20 <small>precio de lanzamiento</small></p>
+        <p class="medio">Hasta el 30 de noviembre; después, USD 25. Pago en criptomonedas (USDT, BTC, ETH y otras). Descarga inmediata.</p>
         <a class="boton primario" href="#aviso" aria-disabled="true">Disponible el 16 de noviembre</a>
       </article>
     </div>

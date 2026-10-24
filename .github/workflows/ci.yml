@@ -74,7 +74,8 @@ jobs:
       - name: Sin scripts ni recursos de terceros
         run: |
           set -e
-          if grep -Eo '(src|href)="https?://[^"]+' index.html | grep -v 'github.com\|github.io\|mastil.com.ar' ; then
+          # Recursos que el navegador carga (scripts, estilos, imágenes, fuentes): solo del propio origen. Los <a href> externos sí se permiten.
+          if grep -Eo '(src="https?://[^"]+|<link[^>]+href="https?://[^"]+)' index.html | grep -v 'github.com\|github.io\|mastil.com.ar' ; then
             echo "La página carga recursos de terceros: revisarlo (CSP y privacidad)."; exit 1
           fi
           if grep -q '<form' index.html; then echo "Hay un formulario: la web no debe recibir datos."; exit 1; fi

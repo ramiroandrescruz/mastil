@@ -195,6 +195,10 @@ p { margin: 0 0 1em; }
 .galeria figcaption b { color: var(--tinta); font-weight: 600; }
 .galeria figure.ancha { grid-column: 1 / -1; }
 .galeria figure.ancha img { aspect-ratio: 1040 / 778; }
+.galeria .ediciones .par { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--filete); }
+.galeria .ediciones .par img { aspect-ratio: 800 / 696; object-fit: contain; background: var(--lamina); }
+
+@media (min-width: 560px) { .galeria .ediciones .par { grid-template-columns: 1fr 1fr; } }
 
 @media (min-width: 720px) { .galeria figure.ancha { grid-column: span 2; } }
 

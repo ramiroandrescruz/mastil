@@ -30,7 +30,7 @@ jobs:
       - name: Empaquetar solo lo que se sirve
         run: |
           mkdir -p _sitio
-          cp -R index.html styles.css fonts img muestra redes .nojekyll _sitio/
+          cp -R index.html styles.css fonts img muestra redes audio .nojekyll _sitio/
           [ -f CNAME ] && cp CNAME _sitio/ || true
           # Cloudflare guarda styles.css 4 horas en el navegador: la URL cambia en cada publicación (cache-busting)
           sed -i "s|href=\"styles.css\"|href=\"styles.css?v=${GITHUB_SHA::7}\"|" _sitio/index.html

@@ -185,6 +185,17 @@ p { margin: 0 0 1em; }
 .rutas td { padding: .65rem .6rem .65rem 0; border-bottom: 1px solid var(--filete); vertical-align: top; }
 .rutas td:first-child { font-weight: 700; width: 38%; }
 
+/* Escuchar */
+.escuchar { border: 1px solid var(--filete); border-top: 3px double var(--tinta); background: var(--papel-2); padding: 1.1rem 1.25rem 1.25rem; margin-bottom: 2rem; }
+.escuchar h3 { margin-bottom: .35rem; }
+.escuchar p { font-size: .98rem; }
+.escuchar audio { display: block; width: 100%; margin: .5rem 0 1rem; }
+.guia-escucha { list-style: none; padding: 0; margin: 0; display: grid; gap: .55rem; font-family: var(--sans); font-size: .95rem; }
+.guia-escucha li { display: grid; grid-template-columns: 2.6rem 1fr; gap: .5rem; }
+.guia-escucha .t { font-weight: 700; font-feature-settings: "tnum" 1; }
+.guia-escucha .ref { color: var(--tinta-2); white-space: nowrap; }
+.guia-escucha .ref::before { content: "→ "; }
+
 /* Galería */
 .galeria { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .galeria figure { margin: 0; }

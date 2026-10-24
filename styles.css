@@ -80,8 +80,6 @@ p { margin: 0 0 1em; }
 .filete-doble { border-top: 3px double var(--tinta); }
 .filete { border-top: 1px solid var(--filete); }
 .secundario { color: var(--tinta-2); }
-.c-azul { color: var(--azul); } .c-rojo { color: var(--rojo); } .c-gris { color: var(--gris); }
-.muestra-color i.c-azul { background: #2f6fde; } .muestra-color i.c-rojo { background: #b3261e; } .muestra-color i.c-gris { background: #8a9099; }
 .pie-cuerpo { margin-top: 2rem; }
 .chico { font-size: .9rem; }
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
@@ -135,8 +133,11 @@ p { margin: 0 0 1em; }
 .datos li::before { content: "❦"; font-family: var(--simbolos); font-size: .85em; color: var(--tinta-2); flex: none; }
 .acciones { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
 .acciones .nota { font-family: var(--sans); font-size: .9rem; color: var(--tinta-2); flex-basis: 100%; margin: .25rem 0 0; }
-.tapa { justify-self: center; width: min(100%, 360px); }
-.tapa img { box-shadow: var(--sombra); border: 1px solid var(--filete); background: var(--lamina); }
+.tapa { justify-self: center; width: min(100%, 460px); margin: 0; }
+.tapa-pila { position: relative; aspect-ratio: 1 / .97; }
+.tapa-pila img { position: absolute; box-shadow: var(--sombra); border: 1px solid var(--filete); background: var(--lamina); }
+.tapa-libro { width: 50%; left: 1%; top: 1%; transform: rotate(-3deg); }
+.tapa-pagina { width: 60%; right: 1%; bottom: 1%; transform: rotate(2deg); }
 .tapa figcaption { font-family: var(--sans); font-size: .85rem; color: var(--tinta-2); text-align: center; margin-top: .75rem; }
 
 /* ---------- Secciones ---------- */
@@ -149,6 +150,12 @@ p { margin: 0 0 1em; }
 @media (min-width: 860px) { .dos-columnas { grid-template-columns: 1fr 1fr; gap: 3rem; } }
 .grabado { background: var(--lamina); padding: 1rem; border: 1px solid var(--filete); box-shadow: var(--sombra); }
 .grabado img { margin-inline: auto; }
+.grabado.chico { padding: .6rem; width: 100%; max-width: 230px; }
+.grabado.chico figcaption { font-size: .78rem; }
+.cabeza-grabado { display: grid; gap: 1.5rem; grid-template-columns: 1fr; align-items: center; margin-bottom: 2rem; }
+.seccion .cabeza-grabado header { margin-bottom: 0; }
+
+@media (min-width: 860px) { .cabeza-grabado { grid-template-columns: 1fr 230px; gap: 3rem; } }
 .grabado figcaption { font-family: var(--sans); font-size: .82rem; color: #55575c; margin-top: .75rem; text-align: center; }
 
 /* Partes del libro */
@@ -166,8 +173,7 @@ p { margin: 0 0 1em; }
 .tarjeta .icono { font-family: var(--simbolos); display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; background: var(--tinta); color: var(--papel); font-size: .95rem; margin-bottom: .6rem; }
 .tarjeta h3 { font-size: 1.12rem; margin-bottom: .35rem; }
 .tarjeta p { margin: 0; font-size: .98rem; color: var(--tinta-2); }
-.muestra-color { display: inline-flex; gap: .35rem; vertical-align: middle; margin-left: .25rem; }
-.muestra-color i { width: .8rem; height: .8rem; border-radius: 50%; display: inline-block; }
+.muestra-forma { display: inline-block; width: 3.2rem; height: .85rem; vertical-align: -.05rem; margin-left: .2rem; }
 
 /* Rutas */
 .rutas { width: 100%; border-collapse: collapse; font-size: .98rem; margin-top: 1rem; }

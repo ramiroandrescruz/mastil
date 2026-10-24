@@ -1,0 +1,4 @@
+_sitio/
+.lighthouseci/
+node_modules/
+.DS_Store

@@ -1,0 +1,6 @@
+# Reglas de ZAP para GitHub Pages: no podemos fijar cabeceras HTTP ahí (se resuelve con Cloudflare delante).
+10038	WARN	(Content Security Policy header not set: se declara con <meta>)
+10020	WARN	(Anti-clickjacking header)
+10021	WARN	(X-Content-Type-Options)
+10063	WARN	(Permissions Policy)
+10037	WARN	(Server leaks information)

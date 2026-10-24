@@ -4,11 +4,17 @@
    El color se reserva a lo que en el libro es información: azul (reposo), rojo (color), gris (paso). */
 
 @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+
 @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+
 @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-700.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+
 @font-face { font-family: "Source Sans 3"; src: url("fonts/SourceSans3-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+
 @font-face { font-family: "Source Sans 3"; src: url("fonts/SourceSans3-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+
 @font-face { font-family: "Source Sans 3"; src: url("fonts/SourceSans3-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
+
 @font-face { font-family: "Noto Sans Symbols 2"; src: url("fonts/NotoSansSymbols2-400.woff2") format("woff2"); font-display: swap; }
 
 :root {
@@ -23,24 +29,29 @@
   --rojo: #b3261e;         /* color: acentos escasos */
   --lamina: #ffffff;       /* fondo de los grabados y las páginas */
   --sombra: 0 1px 2px rgba(0,0,0,.08), 0 8px 24px rgba(0,0,0,.08);
+  --boton-texto: #ffffff;
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --sans: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
   --simbolos: "Noto Sans Symbols 2", var(--serif);
   --ancho: 1080px;
   --gutter: 16px;
+
   color-scheme: light dark;
 }
+
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --papel: #141414; --papel-2: #1c1d20; --tinta: #ebe8e2; --tinta-2: #b4b2ad; --gris: #8a9099;
     --filete: #3a3c42; --azul: #7ea4ef; --azul-oscuro: #a3bff5; --rojo: #e07a73; --lamina: #f4f2ee;
     --sombra: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.4);
+    --boton-texto: #141414;
   }
 }
 :root[data-theme="dark"] {
   --papel: #141414; --papel-2: #1c1d20; --tinta: #ebe8e2; --tinta-2: #b4b2ad; --gris: #8a9099;
   --filete: #3a3c42; --azul: #7ea4ef; --azul-oscuro: #a3bff5; --rojo: #e07a73; --lamina: #f4f2ee;
   --sombra: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.4);
+  --boton-texto: #141414;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -69,22 +80,27 @@ p { margin: 0 0 1em; }
 .filete-doble { border-top: 3px double var(--tinta); }
 .filete { border-top: 1px solid var(--filete); }
 .secundario { color: var(--tinta-2); }
+.c-azul { color: var(--azul); } .c-rojo { color: var(--rojo); } .c-gris { color: var(--gris); }
+.muestra-color i.c-azul { background: #2f6fde; } .muestra-color i.c-rojo { background: #b3261e; } .muestra-color i.c-gris { background: #8a9099; }
+.pie-cuerpo { margin-top: 2rem; }
 .chico { font-size: .9rem; }
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* ---------- Encabezado ---------- */
-.friso { display: block; width: 100%; max-height: 72px; object-fit: cover; object-position: center; background: var(--lamina); }
+.friso { display: block; width: 100%; height: 72px; object-fit: cover; object-position: center; background: var(--lamina); }
 .cabecera { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--papel) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--filete); }
 .cabecera .contenedor { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 60px; }
 .marca { display: inline-flex; align-items: center; gap: .6rem; color: var(--tinta); text-decoration: none; }
 .marca svg { width: 30px; height: 30px; flex: none; }
 .marca .nombre { font-family: var(--serif); font-weight: 700; font-size: 1.3rem; letter-spacing: .12em; text-transform: uppercase; }
 .marca .descriptor { display: none; font-family: var(--sans); font-size: .8rem; color: var(--tinta-2); letter-spacing: .02em; }
+
 @media (min-width: 720px) { .marca .descriptor { display: inline; border-left: 1px solid var(--filete); padding-left: .6rem; } }
 .nav { display: flex; gap: 1.25rem; font-family: var(--sans); font-size: .95rem; font-weight: 600; }
 .nav a { color: var(--tinta); text-decoration: none; }
 .nav a:hover { color: var(--azul); }
 .nav .solo-ancho { display: none; }
+
 @media (min-width: 900px) { .nav .solo-ancho { display: inline; } }
 .nav .cta { color: var(--azul); }
 
@@ -97,14 +113,15 @@ p { margin: 0 0 1em; }
   transition: background .15s, color .15s, border-color .15s;
 }
 .boton:hover { background: var(--tinta); color: var(--papel); }
-.boton.primario { background: var(--azul); border-color: var(--azul); color: #fff; }
-.boton.primario:hover { background: var(--azul-oscuro); border-color: var(--azul-oscuro); color: #fff; }
+.boton.primario { background: var(--azul); border-color: var(--azul); color: var(--boton-texto); }
+.boton.primario:hover { background: var(--azul-oscuro); border-color: var(--azul-oscuro); color: var(--boton-texto); }
 .boton.chico { padding: .5rem .9rem; font-size: .9rem; }
 .boton[aria-disabled="true"] { opacity: .55; cursor: not-allowed; }
 
 /* ---------- Portada ---------- */
 .portada { padding: clamp(2rem, 5vw, 4.5rem) 0 clamp(2rem, 4vw, 3.5rem); }
 .portada .contenedor { display: grid; gap: 2.5rem; align-items: center; grid-template-columns: 1fr; }
+
 @media (min-width: 860px) { .portada .contenedor { grid-template-columns: 1.15fr .85fr; gap: 3.5rem; } }
 .portada h1 { margin-bottom: .35rem; }
 .portada .subtitulo { font-style: italic; font-size: clamp(1.15rem, 1rem + .8vw, 1.5rem); color: var(--tinta-2); margin: 0 0 1.25rem; }
@@ -124,6 +141,7 @@ p { margin: 0 0 1em; }
 .seccion header { max-width: 42em; margin-bottom: 2rem; }
 .seccion header p { font-size: 1.1rem; }
 .dos-columnas { display: grid; gap: 2rem; grid-template-columns: 1fr; align-items: start; }
+
 @media (min-width: 860px) { .dos-columnas { grid-template-columns: 1fr 1fr; gap: 3rem; } }
 .grabado { background: var(--lamina); padding: 1rem; border: 1px solid var(--filete); box-shadow: var(--sombra); }
 .grabado img { margin-inline: auto; }
@@ -164,6 +182,7 @@ p { margin: 0 0 1em; }
 
 /* Compra */
 .precios { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
+
 @media (min-width: 720px) { .precios { grid-template-columns: 1fr 1fr; } }
 .precio { border: 1px solid var(--filete); border-top: 3px double var(--tinta); padding: 1.5rem; background: var(--papel); display: flex; flex-direction: column; gap: .5rem; }
 .precio .importe { font-size: 2.2rem; font-weight: 700; line-height: 1; margin: .25rem 0; font-feature-settings: "tnum" 1; }
@@ -178,21 +197,25 @@ p { margin: 0 0 1em; }
 
 /* Próximo libro */
 .proximo { display: grid; gap: 1.5rem; grid-template-columns: 1fr; align-items: center; }
+
 @media (min-width: 860px) { .proximo { grid-template-columns: 1fr 1.2fr; gap: 3rem; } }
 .proximo .titulo { font-size: 1.6rem; margin-bottom: .2rem; }
 .proximo .sub { font-style: italic; color: var(--tinta-2); margin-bottom: 1rem; }
 .pasos { margin: 0; padding-left: 1.2rem; columns: 2; column-gap: 2rem; font-size: .98rem; }
+
 @media (max-width: 600px) { .pasos { columns: 1; } }
 .pasos li { break-inside: avoid; margin-bottom: .35rem; }
 
 /* Autor */
 .autor { display: grid; gap: 1.5rem; grid-template-columns: 1fr; align-items: center; }
+
 @media (min-width: 720px) { .autor { grid-template-columns: 180px 1fr; gap: 2.5rem; } }
-.autor .retrato { width: 180px; height: 180px; border: 1px solid var(--filete); background: var(--lamina); display: grid; place-items: center; color: var(--tinta-2); font-family: var(--sans); font-size: .85rem; text-align: center; padding: 1rem; }
+.autor .retrato { width: 180px; height: 180px; border: 1px solid var(--filete); background: var(--lamina); display: grid; place-items: center; color: #55575c; font-family: var(--sans); font-size: .85rem; text-align: center; padding: 1rem; }
 
 /* Pie */
 .pie { border-top: 1px solid var(--filete); padding: 2.5rem 0 3rem; font-family: var(--sans); font-size: .9rem; color: var(--tinta-2); }
 .pie .contenedor { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+
 @media (min-width: 720px) { .pie .contenedor { grid-template-columns: 1fr auto; align-items: end; } }
 .pie .marca .nombre { font-size: 1.1rem; }
 .pie p { margin: .35rem 0 0; }

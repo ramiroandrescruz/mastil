@@ -1,0 +1,94 @@
+# Controles de la web de Mástil. Corren en cada pull request y en cada push a main.
+# Si fallan, el despliegue (deploy.yml) no se ejecuta.
+name: Controles
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  html-css:
+    name: HTML y CSS válidos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validar el HTML (html-validate)
+        run: npx --yes html-validate@9 "index.html"
+      - name: Validar el CSS (stylelint)
+        run: |
+          npm install --no-save --no-package-lock --silent stylelint@16 stylelint-config-standard@36
+          npx stylelint "styles.css"
+      - name: Comprobar que existan los archivos enlazados
+        run: |
+          set -e
+          faltan=0
+          for f in $(grep -o 'href="[^"#][^"]*"\|src="[^"]*"' index.html | sed 's/^[a-z]*="//; s/"$//' | grep -v '^mailto:\|^http\|^data:' | sort -u); do
+            [ -e "$f" ] || { echo "FALTA $f"; faltan=1; }
+          done
+          for f in $(grep -o 'url("[^"]*")' styles.css | sed 's/url("//; s/")//' | sort -u); do
+            [ -e "$f" ] || { echo "FALTA $f (CSS)"; faltan=1; }
+          done
+          exit $faltan
+
+  enlaces:
+    name: Enlaces externos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Comprobar enlaces (lychee)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --exclude 'mailto:' --exclude-path fonts --exclude-path img "index.html" "README.md"
+          fail: true
+
+  accesibilidad-rendimiento:
+    name: Accesibilidad y rendimiento
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Servir la web en local
+        run: |
+          npx --yes serve@14 -l 8080 . &
+          sleep 3
+          curl -sf http://localhost:8080/ > /dev/null
+      - name: Accesibilidad (pa11y, WCAG 2.1 AA)
+        run: npx --yes pa11y-ci@3 --config .pa11yci.json
+      - name: Lighthouse con presupuestos
+        run: npx --yes @lhci/cli@0.14 autorun --config=lighthouserc.json
+
+  seguridad:
+    name: Seguridad
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sin scripts ni recursos de terceros
+        run: |
+          set -e
+          if grep -Eo '(src|href)="https?://[^"]+' index.html | grep -v 'github.com\|github.io\|mastil.com.ar' ; then
+            echo "La página carga recursos de terceros: revisarlo (CSP y privacidad)."; exit 1
+          fi
+          if grep -q '<form' index.html; then echo "Hay un formulario: la web no debe recibir datos."; exit 1; fi
+          echo "OK: todo se sirve desde el propio origen; sin formularios ni cookies."
+      - name: Secretos en el repositorio (gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Análisis del sitio publicado (OWASP ZAP, solo en main)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: zaproxy/action-baseline@v0.14.0
+        with:
+          target: https://ramiroandrescruz.github.io/mastil/
+          rules_file_name: .zap-rules.tsv
+          allow_issue_writing: false
+          fail_action: true

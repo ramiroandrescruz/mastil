@@ -3,3 +3,5 @@
 10050	IGNORE	(Retrieved from cache: informativo)
 10098	IGNORE	(Cross-domain: Pages manda access-control-allow-origin: * en los recursos; sin efecto en una web sin datos)
 10109	IGNORE	(Modern Web Application: informativo)
+10049	IGNORE	(Storable and Cacheable Content: informativo; una web estática debe poder guardarse en caché)
+90004	IGNORE	(Cross-Origin-Embedder-Policy: solo hace falta para aislamiento entre orígenes, SharedArrayBuffer; la página no lo usa)

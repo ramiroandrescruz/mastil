@@ -88,7 +88,7 @@ jobs:
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: zaproxy/action-baseline@v0.14.0
         with:
-          target: https://ramiroandrescruz.github.io/mastil/
+          target: https://mastil.com.ar/
           rules_file_name: .zap-rules.tsv
           allow_issue_writing: false
           fail_action: true

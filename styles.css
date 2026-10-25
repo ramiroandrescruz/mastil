@@ -254,6 +254,7 @@ p { margin: 0 0 1em; }
 .autor { display: grid; gap: 1.5rem; grid-template-columns: 1fr; align-items: center; }
 
 @media (min-width: 720px) { .autor { grid-template-columns: 180px 1fr; gap: 2.5rem; } }
+.autor .redes { font-family: var(--sans); font-size: .98rem; color: var(--tinta-2); }
 .autor .retrato { width: 180px; height: 180px; border: 1px solid var(--filete); background: var(--lamina); object-fit: cover; box-shadow: var(--sombra); }
 
 /* Pie */

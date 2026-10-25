@@ -45,7 +45,7 @@ jobs:
       - name: Comprobar enlaces (lychee)
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --exclude 'mailto:' --exclude 'qr\.afip\.gob\.ar' --exclude-path fonts --exclude-path img "index.html" "README.md"
+          args: --no-progress --exclude 'mailto:' --exclude 'qr\.afip\.gob\.ar' --exclude 'instagram\.com' --exclude 'facebook\.com' --exclude-path fonts --exclude-path img "index.html" "README.md"
           fail: true
 
   accesibilidad-rendimiento:

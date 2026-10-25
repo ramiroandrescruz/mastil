@@ -197,7 +197,7 @@ p { margin: 0 0 1em; }
 .guia-escucha .ref::before { content: "→ "; }
 
 /* Galería */
-.galeria { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.galeria { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 .galeria figure { margin: 0; }
 .galeria a { display: block; background: var(--lamina); border: 1px solid var(--filete); box-shadow: var(--sombra); transition: transform .15s; }
 .galeria a:hover { transform: translateY(-2px); }

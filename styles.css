@@ -196,7 +196,7 @@ p { margin: 0 0 1em; }
 .guia-escucha { list-style: none; padding: 0; margin: 0; display: grid; gap: .55rem; font-family: var(--sans); font-size: .95rem; }
 .guia-escucha li { display: grid; grid-template-columns: 2.6rem 1fr; gap: .5rem; }
 .guia-escucha .t { font-weight: 700; font-feature-settings: "tnum" 1; }
-.guia-escucha .ref { color: var(--tinta-2); white-space: nowrap; }
+.guia-escucha .ref { display: block; color: var(--tinta-2); font-size: .9em; }
 .guia-escucha .ref::before { content: "→ "; }
 
 /* Galería */

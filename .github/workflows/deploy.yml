@@ -26,7 +26,7 @@ jobs:
       url: ${{ steps.deploy.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
       - name: Empaquetar solo lo que se sirve
         run: |
           mkdir -p _sitio

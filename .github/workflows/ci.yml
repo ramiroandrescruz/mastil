@@ -30,6 +30,7 @@ jobs:
         run: |
           faltan=0
           grep -o 'href="[^"#][^"]*"\|src="[^"]*"' index.html | sed 's/^[a-z]*="//; s/"$//' | grep -v '^mailto:\|^http\|^data:' | sort -u | while IFS= read -r f; do
+            f="${f%%#*}"   # sin el fragmento (#page=30 abre la muestra en el índice)
             [ -e "$f" ] || { echo "FALTA $f"; exit 1; }
           done
           grep -o 'url("[^"]*")' styles.css | sed 's/url("//; s/")//' | sort -u | while IFS= read -r f; do

@@ -87,7 +87,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Análisis del sitio publicado (OWASP ZAP, solo en main)
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        uses: zaproxy/action-baseline@v0.14.0
+        uses: zaproxy/action-baseline@v0.15.0
         with:
           target: https://mastil.com.ar/
           rules_file_name: .zap-rules.tsv

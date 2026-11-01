@@ -16,6 +16,9 @@
 @font-face { font-family: "Source Sans 3"; src: url("fonts/SourceSans3-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
 
 @font-face { font-family: "Noto Sans Symbols 2"; src: url("fonts/NotoSansSymbols2-400.woff2") format("woff2"); font-display: swap; }
+/* IM Fell English (OFL), la letra de la capa de grabados del libro y de las cartas: títulos grandes (2026-11-01) */
+@font-face { font-family: "IM Fell English"; src: url("fonts/IMFellEnglish-400.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "IM Fell English"; src: url("fonts/IMFellEnglish-400-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
 
 :root {
   --papel: #ffffff;
@@ -33,6 +36,7 @@
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --sans: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
   --simbolos: "Noto Sans Symbols 2", var(--serif);
+  --antigua: "IM Fell English", var(--serif);
   --ancho: 1080px;
   --gutter: 16px;
 
@@ -66,6 +70,7 @@ img { max-width: 100%; height: auto; display: block; }
 a { color: var(--azul); text-decoration-thickness: 1px; text-underline-offset: .15em; }
 a:hover { color: var(--azul-oscuro); }
 h1, h2, h3, h4 { font-family: var(--serif); font-weight: 700; line-height: 1.15; margin: 0 0 .5em; letter-spacing: -.005em; }
+h1, h2 { font-family: var(--antigua); font-weight: 400; letter-spacing: 0; }
 h1 { font-size: clamp(2rem, 1.2rem + 3.2vw, 3.4rem); }
 h2 { font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.25rem); }
 h3 { font-size: 1.25rem; }
@@ -126,7 +131,7 @@ p { margin: 0 0 1em; }
 
 @media (min-width: 860px) { .portada .contenedor { grid-template-columns: 1.15fr .85fr; gap: 3.5rem; } }
 .portada h1 { margin-bottom: .35rem; }
-.portada .subtitulo { font-style: italic; font-size: clamp(1.15rem, 1rem + .8vw, 1.5rem); color: var(--tinta-2); margin: 0 0 1.25rem; }
+.portada .subtitulo { font-family: var(--antigua); font-style: italic; font-size: clamp(1.15rem, 1rem + .8vw, 1.5rem); color: var(--tinta-2); margin: 0 0 1.25rem; }
 .portada .lead { font-size: 1.15rem; max-width: 36em; }
 .datos { list-style: none; padding: 0; margin: 1.25rem 0 1.75rem; display: grid; gap: .45rem .75rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); font-family: var(--sans); font-size: .98rem; }
 .datos li { display: flex; gap: .55rem; align-items: baseline; }

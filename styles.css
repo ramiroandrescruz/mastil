@@ -209,7 +209,7 @@ p { margin: 0 0 1em; }
 
 /* Galería */
 .captura-gp { margin: 0 0 2rem; }
-.captura-gp a { display: block; border: 1px solid var(--filete); box-shadow: var(--sombra); }
+.captura-gp > a { display: block; border: 1px solid var(--filete); box-shadow: var(--sombra); }   /* solo el enlace de la imagen, no los del pie */
 .captura-gp img { display: block; width: 100%; height: auto; }
 .captura-gp figcaption { font-family: var(--sans); font-size: .85rem; color: var(--tinta-2); margin-top: .6rem; line-height: 1.4; }
 .captura-gp figcaption b { color: var(--tinta); font-weight: 600; }

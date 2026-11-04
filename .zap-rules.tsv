@@ -5,3 +5,5 @@
 10109	IGNORE	(Modern Web Application: informativo)
 10049	IGNORE	(Storable and Cacheable Content: informativo; una web estática debe poder guardarse en caché)
 90004	IGNORE	(Cross-Origin-Embedder-Policy: solo hace falta para aislamiento entre orígenes, SharedArrayBuffer; la página no lo usa)
+10027	IGNORE	(Suspicious Comments: palabras como TODO dentro de reproductor/alphatab/alphaTab.min.js, la biblioteca minificada de alphaTab; no es código propio)
+10096	IGNORE	(Timestamp Disclosure: números del código minificado de alphaTab que ZAP toma por fechas Unix; sin información)

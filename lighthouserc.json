@@ -6,14 +6,30 @@
       "settings": { "chromeFlags": "--no-sandbox", "preset": "desktop" }
     },
     "assert": {
-      "assertions": {
-        "categories:performance": ["error", { "minScore": 0.9 }],
-        "categories:accessibility": ["error", { "minScore": 0.95 }],
-        "categories:best-practices": ["error", { "minScore": 0.95 }],
-        "categories:seo": ["error", { "minScore": 0.95 }],
-        "uses-long-cache-ttl": "off",
-        "cache-insight": "off"
-      }
+      "assertMatrix": [
+        {
+          "matchingUrlPattern": "http://localhost:8080/$",
+          "assertions": {
+            "categories:performance": ["error", { "minScore": 0.9 }],
+            "categories:accessibility": ["error", { "minScore": 0.95 }],
+            "categories:best-practices": ["error", { "minScore": 0.95 }],
+            "categories:seo": ["error", { "minScore": 0.95 }],
+            "uses-long-cache-ttl": "off",
+            "cache-insight": "off"
+          }
+        },
+        {
+          "matchingUrlPattern": "http://localhost:8080/gracias/$",
+          "assertions": {
+            "categories:performance": ["error", { "minScore": 0.9 }],
+            "categories:accessibility": ["error", { "minScore": 0.95 }],
+            "categories:best-practices": ["error", { "minScore": 0.95 }],
+            "is-crawlable": "off",
+            "uses-long-cache-ttl": "off",
+            "cache-insight": "off"
+          }
+        }
+      ]
     },
     "upload": { "target": "temporary-public-storage" }
   }

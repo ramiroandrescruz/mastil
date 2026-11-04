@@ -1,0 +1,60 @@
+/* Reproductor de Guitar Pro (alphaTab). Hoja aparte: la CSP del sitio (style-src 'self') no permite estilos en línea. */
+
+/* --- lo que alphaTab inyectaría en un <style> (bloqueado por la CSP): la fuente musical Bravura con el nombre de
+   familia que alphaTab busca («alphaTab»), y los estilos compartidos de la superficie de dibujo. */
+@font-face {
+  font-display: block;
+  font-family: "alphaTab";
+  src: url("alphatab/font/Bravura.woff2") format("woff2"), url("alphatab/font/Bravura.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+.at-surface.at .at {
+  font-family: "alphaTab";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 36px;
+  overflow: visible !important;
+}
+.at-surface * { cursor: default; vertical-align: top; overflow: visible; }
+.at-surface-svg text { dominant-baseline: alphabetic; white-space: pre; }
+
+/* --- la página */
+.reproductor { font-family: var(--sans); }
+.reproductor .abrir { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: center; margin: 1rem 0 .5rem; }
+.reproductor .abrir .nombre-archivo { color: var(--tinta-2); }
+.reproductor .controles { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; padding: 12px 14px;
+  border: 1px solid var(--filete); border-radius: 6px; background: var(--papel-2); margin: 1rem 0; position: sticky; top: 0; z-index: 5; }
+.reproductor .controles label, .reproductor .controles .grupo { display: inline-flex; gap: 6px; align-items: center; white-space: nowrap; }
+.reproductor select, .reproductor button.chico { font: inherit; font-size: .95rem; padding: 5px 8px; border: 1px solid var(--filete);
+  border-radius: 4px; background: var(--papel); color: var(--tinta); }
+.reproductor button.chico { cursor: pointer; }
+.reproductor button.chico[aria-pressed="true"] { background: var(--azul); color: var(--boton-texto); border-color: var(--azul); }
+.reproductor .boton.reproducir { min-width: 9.5em; }
+.reproductor .pistas { list-style: none; padding: 0; margin: 0 0 1rem; display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.reproductor .pistas li { display: inline-flex; gap: 8px; align-items: center; }
+.reproductor .pistas .color { width: 10px; height: 10px; border-radius: 50%; display: inline-block; background: var(--gris); }
+.reproductor .estado { color: var(--tinta-2); font-size: .95rem; min-height: 1.4em; margin: 0 0 .5rem; }
+.reproductor .estado.error { color: var(--rojo); }
+/* la partitura va sobre papel claro también en modo oscuro: es una lámina, como las páginas del libro */
+.reproductor .partitura { background: var(--lamina); color: #161616; border: 1px solid var(--filete); border-radius: 6px;
+  min-height: 200px; overflow: auto; padding: 8px 0; }
+.reproductor .partitura.horizontal { overflow-x: auto; }
+.at-cursor-bar { background: rgba(47, 111, 222, .12); }
+.at-cursor-beat { background: rgba(47, 111, 222, .75); width: 3px; }
+.at-selection div { background: rgba(47, 111, 222, .1); }
+.at-highlight * { fill: #2f6fde; stroke: #2f6fde; }
+.reproductor details { margin: 1rem 0; }
+.reproductor details summary { cursor: pointer; font-weight: 600; }
+.reproductor details ul { margin: .5rem 0 0; padding-left: 1.2em; }
+.reproductor details li { margin-bottom: .35em; }
+@media (max-width: 600px) {
+  .reproductor .controles { position: static; }
+  .reproductor .boton.reproducir { min-width: 0; }
+}

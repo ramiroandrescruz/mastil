@@ -138,6 +138,7 @@ p { margin: 0 0 1em; }
 .datos { list-style: none; padding: 0; margin: 1.25rem 0 1.75rem; display: grid; gap: .45rem .75rem; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); font-family: var(--sans); font-size: .98rem; }
 .datos li { display: flex; gap: .55rem; align-items: baseline; }
 .datos li::before { content: "❦"; font-family: var(--simbolos); font-size: .85em; color: var(--tinta-2); flex: none; }
+#gracias .datos { grid-template-columns: 1fr; max-width: 44em; gap: .7rem; }   /* /gracias/: una sola columna, es una lista de pasos */
 .acciones { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
 .acciones .nota { font-family: var(--sans); font-size: .9rem; color: var(--tinta-2); flex-basis: 100%; margin: .25rem 0 0; }
 

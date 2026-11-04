@@ -21,17 +21,19 @@ jobs:
         with:
           node-version: 22
       - name: Validar el HTML (html-validate)
-        run: npx --yes html-validate@9 "index.html"
+        run: npx --yes html-validate@9 "index.html" "gracias/index.html"
       - name: Validar el CSS (stylelint)
         run: |
           npm install --no-save --no-package-lock --silent stylelint@16 stylelint-config-standard@36
           npx stylelint "styles.css"
       - name: Comprobar que existan los archivos enlazados
         run: |
-          faltan=0
-          grep -o 'href="[^"#][^"]*"\|src="[^"]*"' index.html | sed 's/^[a-z]*="//; s/"$//' | grep -v '^mailto:\|^http\|^data:' | sort -u | while IFS= read -r f; do
-            f="${f%%#*}"   # sin el fragmento (#page=30 abre la muestra en el índice)
-            [ -e "$f" ] || { echo "FALTA $f"; exit 1; }
+          for pagina in index.html gracias/index.html; do
+            dir=$(dirname "$pagina")
+            grep -o 'href="[^"#][^"]*"\|src="[^"]*"' "$pagina" | sed 's/^[a-z]*="//; s/"$//' | grep -v '^mailto:\|^http\|^data:' | sort -u | while IFS= read -r f; do
+              f="${f%%#*}"   # sin el fragmento (#page=30 abre la muestra en el índice)
+              [ -e "$dir/$f" ] || { echo "FALTA $f (en $pagina)"; exit 1; }
+            done
           done
           grep -o 'url("[^"]*")' styles.css | sed 's/url("//; s/")//' | sort -u | while IFS= read -r f; do
             [ -e "$f" ] || { echo "FALTA $f (CSS)"; exit 1; }
@@ -46,7 +48,7 @@ jobs:
       - name: Comprobar enlaces (lychee)
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --exclude 'mailto:' --exclude 'qr\.afip\.gob\.ar' --exclude 'instagram\.com' --exclude 'facebook\.com' --exclude-path fonts --exclude-path img "index.html" "README.md"
+          args: --no-progress --exclude 'mailto:' --exclude 'qr\.afip\.gob\.ar' --exclude 'instagram\.com' --exclude 'facebook\.com' --exclude-path fonts --exclude-path img "index.html" "gracias/index.html" "README.md"
           fail: true
 
   accesibilidad-rendimiento:
@@ -76,10 +78,10 @@ jobs:
         run: |
           set -e
           # Recursos que el navegador carga (scripts, estilos, imágenes, fuentes): solo del propio origen. Los <a href> externos sí se permiten.
-          if grep -Eo '(src="https?://[^"]+|<link[^>]+href="https?://[^"]+)' index.html | grep -v 'github.com\|github.io\|mastil.com.ar' ; then
+          if grep -Eo '(src="https?://[^"]+|<link[^>]+href="https?://[^"]+)' index.html gracias/index.html | grep -v 'github.com\|github.io\|mastil.com.ar' ; then
             echo "La página carga recursos de terceros: revisarlo (CSP y privacidad)."; exit 1
           fi
-          if grep -q '<form' index.html; then echo "Hay un formulario: la web no debe recibir datos."; exit 1; fi
+          if grep -q '<form' index.html gracias/index.html; then echo "Hay un formulario: la web no debe recibir datos."; exit 1; fi
           echo "OK: todo se sirve desde el propio origen; sin formularios ni cookies."
       - name: Secretos en el repositorio (gitleaks)
         uses: gitleaks/gitleaks-action@v2

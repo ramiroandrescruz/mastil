@@ -1,7 +1,7 @@
 {
   "ci": {
     "collect": {
-      "url": ["http://localhost:8080/"],
+      "url": ["http://localhost:8080/", "http://localhost:8080/gracias/"],
       "numberOfRuns": 2,
       "settings": { "chromeFlags": "--no-sandbox", "preset": "desktop" }
     },

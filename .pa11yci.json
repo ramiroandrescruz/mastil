@@ -8,6 +8,7 @@
   },
   "urls": [
     "http://localhost:8080/",
-    { "url": "http://localhost:8080/", "viewport": { "width": 390, "height": 844 } }
+    { "url": "http://localhost:8080/", "viewport": { "width": 390, "height": 844 } },
+    "http://localhost:8080/gracias/"
   ]
 }

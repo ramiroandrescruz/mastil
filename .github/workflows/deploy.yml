@@ -39,7 +39,7 @@ jobs:
           grep -q "styles.css?v=${GITHUB_SHA::7}" _sitio/index.html _sitio/gracias/index.html _sitio/reproductor/index.html
           grep -q "reproductor.js?v=${GITHUB_SHA::7}" _sitio/reproductor/index.html
           du -sh _sitio
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: _sitio
       - id: deploy

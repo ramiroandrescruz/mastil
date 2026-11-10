@@ -213,6 +213,23 @@
       <h2>El libro completo, en PDF</h2>
       <p>Pagás y, dentro de las 24 horas, te compartimos una carpeta de Google Drive al correo de tu cuenta de Google. Ahí están los dos PDF, los ejemplos y las canciones, y ahí llegan las versiones nuevas del libro.</p>
     </header>
+    <div class="opiniones">
+      <h3>Lo que dicen los primeros lectores</h3>
+      <div class="opiniones-lista">
+        <figure class="opinion">
+          <blockquote><p>«Re va la edición y el estilo que tiene el libro. Me coparon las canciones: usé ideas para armar un tema mío y seguro termino armando más de uno. Recomendado para cualquier guitarrista de metal.»</p></blockquote>
+          <figcaption><b>Diego «Peluche»</b> · guitarrista de metal</figcaption>
+        </figure>
+        <figure class="opinion">
+          <blockquote><p>«Me parece muy buena la presentación. Que la web pueda leer los ejemplos me parece buenísimo: yo no tengo Guitar Pro y pude aprovecharlo igual. Las canciones representan bien las ideas del libro. Tiene mucha información útil, explicada de forma clara y entretenida.»</p></blockquote>
+          <figcaption><b>M. Maineiri</b> · guitarrista clásico, compañero del autor en el conservatorio</figcaption>
+        </figure>
+        <figure class="opinion">
+          <blockquote><p>«Les recomendé el libro a mis alumnos como material complementario a sus clases conmigo. El libro es genial: tiene información que es fundamental para cualquiera. Espero el de composición.»</p></blockquote>
+          <figcaption><b>Lucas Molla</b> · profesor de guitarra, San Fernando</figcaption>
+        </figure>
+      </div>
+    </div>
     <div class="precios">
       <article class="precio" id="precio-argentina">
         <p class="etiqueta">Argentina</p>
@@ -336,21 +353,7 @@
   </figure>
 </dialog>
 
-<script>
-(() => {
-  const visor = document.getElementById("visor");
-  if (!visor || typeof visor.showModal !== "function") return;
-  const img = document.getElementById("visor-img"), titulo = document.getElementById("visor-titulo");
-  document.querySelectorAll(".galeria a").forEach(a => a.addEventListener("click", e => {
-    e.preventDefault();
-    img.src = a.href; img.alt = a.querySelector("img").alt;
-    titulo.textContent = a.dataset.pagina ? `Página ${a.dataset.pagina} · ${a.dataset.titulo}` : a.dataset.titulo;
-    visor.showModal();
-  }));
-  document.getElementById("visor-cerrar").addEventListener("click", () => visor.close());
-  visor.addEventListener("click", e => { if (e.target === visor) visor.close(); });
-})();
-</script>
+<script src="visor.js"></script>
 <!--/email_off-->
 </body>
 </html>

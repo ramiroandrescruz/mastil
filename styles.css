@@ -232,6 +232,14 @@ p { margin: 0 0 1em; }
 @media (min-width: 620px) { .galeria { grid-template-columns: repeat(2, 1fr); } }
 
 /* Compra */
+.opiniones { margin-bottom: 2.5rem; }
+.opiniones h3 { margin: 0 0 1rem; }
+.opiniones-lista { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.opinion { margin: 0; padding: 0 0 0 1.1rem; border-left: 3px double var(--tinta); }
+.opinion blockquote { margin: 0; }
+.opinion blockquote p { margin: 0; font-size: 1.05rem; line-height: 1.5; }
+.opinion figcaption { font-family: var(--sans); font-size: .9rem; color: var(--tinta-2); margin-top: .6rem; }
+.opinion figcaption b { color: var(--tinta); font-weight: 600; }
 .precios { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
 
 @media (min-width: 720px) { .precios { grid-template-columns: 1fr 1fr; } }
